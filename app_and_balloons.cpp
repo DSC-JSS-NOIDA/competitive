@@ -9,3 +9,4 @@ int main() {
 	cin>>n;
 	return 0;
 }
+//sort and minus to reach 2nd largest, redo

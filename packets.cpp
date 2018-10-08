@@ -7,5 +7,9 @@ using namespace std;
 int main() {
 	ll n;
 	cin>>n;
+	int p = ceil(log(n)/log(2));
+	if(pow(2,p) == n)
+		p++;
+	cout<<p<<endl;
 	return 0;
 }

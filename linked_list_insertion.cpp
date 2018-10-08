@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
+struct node
+{
+    int data;
+    struct node *next;
+};
+void insertAtBegining(struct node** headRef, int newData);
+void insertAtEnd(struct node** headRef, int newData);
+void printList(struct node *node)
+{
+    while (node != NULL)
+    {
+        cout<<node->data<<' ';
+        node = node->next;
+    }
+    cout<<'\n';
+}
+int main()
+{
+    int test;
+    cin>>test;
+    while(test--)
+    {
+        int n, ch, tmp;
+        struct node* head = NULL;
+        cin>>n;
+        for(int i=0; i<n; i++)
+        {
+            cin>>tmp>>ch;
+            if(ch) insertAtEnd(&head, tmp);
+            else insertAtBegining(&head, tmp);
+        }
+        printList(head);
+    }
+    return 0;
+}
+
+/*Please note that it's Function problem i.e.
+you need to write your solution in the form of Function(s) only.
+Driver Code to call/invoke your function is mentioned above.*/
+
+/*
+Structure of the linked list node is as
+struct node
+{
+    int data;
+    struct node *next;
+};
+*/
+// function inserts the data in front of the list
+void insertAtBegining(struct node** headRef, int newData)
+{
+    struct node* n = (struct node*) malloc(sizeof(struct node));
+    n->data = newData;
+    if(*headRef == NULL)
+        n->next = NULL;
+    else
+        n->next = *headRef;
+    *headRef = n;
+}
+// function appends the data at the end of the list
+void insertAtEnd(struct node** headRef, int newData)
+{
+    struct node* n = (struct node*) malloc(sizeof(struct node));
+    n->data = newData;
+    n->next = NULL;
+    if(*headRef == NULL){
+        *headRef = n;
+        return;
+    }
+    struct node* head = *headRef;
+    while(head->next != NULL){
+        //cout<<head->data<<" ";
+        head = head->next;
+    }
+    head->next = n;
+    // headRef = *head
+}

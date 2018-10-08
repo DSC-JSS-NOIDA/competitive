@@ -5,7 +5,11 @@
 using namespace std;
 
 int main() {
-	ll n;
-	cin>>n;
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+	}
 	return 0;
 }
