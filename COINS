@@ -1,0 +1,31 @@
+    #include<stdio.h>
+    #include<stdlib.h>
+    #define MAX 1000000
+    typedef long long int lli;
+    lli recur(int);
+    lli stor_arr[MAX]={};
+    int main()
+    {
+    	lli i,n;
+    	while (scanf("%lld",&n) >=0 )
+    		printf("%lld\n",recur(n));
+    	return 0;
+    }
+     
+    lli recur(int n)
+    {
+    	if(n<12)
+    		return n;
+    	if(n==12)
+    		return 13;
+    	if(n < MAX && stor_arr[n]!=0)
+    		return stor_arr[n];
+    	lli half=n/2;
+    	lli onethird=n/3;
+    	lli onefourth=n/4;
+    	lli ans=recur(half)+recur(onethird)+recur(onefourth);
+    	if(n < MAX)
+    		stor_arr[n]=ans;
+    	return ans;
+    }
+     
