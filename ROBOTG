@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,m;
+        string s;
+        cin>>n>>m;
+        cin>>s;
+        int l=0,r=0,u=0,d=0,ml=0,mr=0,mu=0,md=0;
+        for(int i=0;s[i];i++)
+        {
+            switch(s[i])
+            {
+                case 'L': l++;r--;
+                            ml = max(ml,l);
+                            break;
+                case 'R': r++;l--;
+                            mr = max(mr,r);
+                            break;
+                case 'U': u++;d--;
+                            mu = max(mu,u);
+                            break;
+                case 'D': d++;u--;
+                            md = max(md,d);
+                            break;
+                                
+            }
+        }
+        if(ml+mr+1<=m && mu+md+1<=n)
+            cout<<"safe";
+        else
+            cout<<"unsafe";
+        
+        // cout<<ml<<" "<<mr<<" "<<md<<" "<<mu;
+        cout<<endl;
+    }
+	return 0;
+}
