@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t,c;
+	int n;
+	cin>>t;
+	while(t--)
+	{  c=0; 
+	   cin>>n;
+	   int a[n],b[n];
+	   for(int i=0;i<n;i++)
+	   {
+	       cin>>a[i];
+	   }
+	   for(int i=0;i<n;i++)
+	   {
+	       cin>>b[i];
+	   }
+	   sort(a,a+n);
+	   sort(b,b+n);
+	   for(int i=0;i<n;i++)
+	   {
+	       for(int j=0;j<n;j++)
+	       {
+	           if(b[j]>=a[i] && b[j]!=0)
+	           {
+	               b[j]=0;
+	               c++;
+	               break;
+	           }
+	           else
+	           {
+	               b[j]=0;
+	           }
+	       }
+	   }
+	   cout<<c<<"\n";
+	}
+	return 0;
+}	
