@@ -1,0 +1,142 @@
+#include <bits/stdc++.h>
+using namespace std;
+int ar[7][7];
+int ans[7]={0};
+
+int fun(int x, int y){
+	int i,tans[7];
+	for(i=1;i<7;i++)
+		tans[i]=ans[i];
+	tans[x]=y;
+	tans[y]=x;
+	vector<int> a;
+	for(i=1;i<7;i++){
+		if(tans[i]==0){
+			a.push_back(i);
+		}
+	}
+	if(a.size()==4){
+		// cout<<"#";
+		if(ar[a[0]][a[1]]==0&&ar[a[2]][a[3]]==0){
+			ans[a[0]]=a[1];
+			ans[a[2]]=a[3];
+			ans[x]=ans[y];
+			ans[a[1]]=a[0];
+			ans[a[3]]=a[2];
+			ans[y]=x;
+			ans[x]=y;
+			return 1;
+		}
+		if(ar[a[0]][a[2]]==0&&ar[a[1]][a[3]]==0){
+			// cout<<"b";
+			ans[a[0]]=a[2];
+			ans[a[1]]=a[3];
+			ans[x]=ans[y];
+			ans[a[2]]=a[0];
+			ans[a[3]]=a[1];
+			ans[y]=x;
+			ans[x]=y;
+			return 1;
+		}
+		if(ar[a[0]][a[3]]==0&&ar[a[2]][a[1]]==0){
+			// cout<<"c";
+			ans[a[0]]=a[3];
+			ans[a[2]]=a[1];
+			ans[x]=ans[y];
+			ans[a[3]]=a[0];
+			ans[a[1]]=a[2];
+			ans[y]=x;
+			ans[x]=y;
+			return 1;
+		}
+		return 0;
+	}
+	if(a.size()==2){
+		// cout<<"@";
+		if(ar[a[0]][a[1]]==0)
+			return 1;
+		else
+			return 0;		
+	}
+	return 0;
+}
+
+int main() {
+	int t,temp;
+	cin>>t;
+	while(t--){
+		int n;
+		int i;int j,k,l,max;
+		cin>>n;
+		int a,b,c,flag=0,p,q,r,s,t;
+		for(i=0;i<7;i++)
+			for(j=0;j<7;j++)
+				ar[i][j]=0;
+		for(i=0;i<7;i++)
+			ans[i]=0;
+		cin>>a;
+		for( i=1;i<n;i++){
+			cin>>b;
+			ar[b][a]=1;
+			ar[a][b]=1;
+			a=b;
+		}
+		for( i=1;i<7;i++){
+			if(ar[i][i]==1){
+				flag=1;
+				break;	    		
+			}
+		}
+		if(flag==0)
+			for( i=1;i<7;i++){
+				ar[i][i]=1;
+			}
+		if(flag==0)
+			for(i=1;i<7;i++){
+				int sum =0;
+				for(j=1;j<7;j++){
+					sum+=ar[i][j];	
+				}
+				if(sum==6){
+					flag=1;
+					break;
+				}
+			}
+		if(flag==0)
+			for(i=1;i<7;i++){
+				for(j=1;j<7;j++){
+					if(ar[i][j]==0 && ans[j]==0 && ans[i]==0){
+						//assume i and j paired.
+						temp = fun(i,j);
+						// cout<<i<<" "<<j<<" "<<temp<<endl;
+						if(temp)
+							goto h;
+					}
+				}
+				if(j<7){
+			    	ans[i]=j;
+			    	ans[j]=i;
+					for(int m=1;m<7;m++){
+						ar[m][i]=1;
+						ar[m][j]=1;
+					}
+		    	}
+			}
+h:
+		if(flag==0)
+			for(i=1;i<7;i++){
+				if(ans[i]==0){
+					flag=1;
+					break;
+				}
+			}
+
+		if(flag==0)
+			for(i=1;i<7;i++)
+				cout<<ans[i]<<" ";
+			else
+				cout<<"-1";
+			cout<<endl;
+	}
+	return 0;
+}
