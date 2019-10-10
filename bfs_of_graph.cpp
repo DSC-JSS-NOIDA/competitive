@@ -16,7 +16,8 @@ int main()
         for(int i=0;i<N;i++)
         {
             int u,v;
-            cin>>u>>v;
+            cin>>u;
+            cin>>v;
             g[u].push_back(v);
         }
         bfs(1,g,vis);
