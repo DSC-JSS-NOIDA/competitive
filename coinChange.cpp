@@ -25,7 +25,8 @@ int main() {
 					change[j]+=change[j-a[i]];
 			}
 		}
-		cout<<change[n]<<endl;
+		cout<<change[n];
+		cout<<endl;
 	}
 	return 0;
 }
