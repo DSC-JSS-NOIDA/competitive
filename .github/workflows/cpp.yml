@@ -1,0 +1,12 @@
+name: cppCI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: CyberZHG@github-action-python-lint@0.0.2
+    - name: CPP-lint
