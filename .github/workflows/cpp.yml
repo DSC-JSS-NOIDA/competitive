@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: CyberZHG/github-action-python-lint@0.0.2
-      name: CPP-lint
-      working-directory: old_solutions
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+      - run: pip install cpplint
+      - run: cpplint --recursive .
