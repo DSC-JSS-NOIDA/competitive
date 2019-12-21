@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: CyberZHG/github-action-python-lint@0.0.2
       name: CPP-lint
-      run: pycodestyle old_solutions/*.cpp hackerrank/*.cpp hackerearth/*.cpp spoj/*.cpp codechef/*.cpp 
+      working-directory: old_solutions
